@@ -3,16 +3,16 @@ name: Deploy Website to S3
 on:
   push:
     branches:
-      - main # Set this to the branch you want to deploy from
+      - main  # This should be your repo's branch that triggers the deploy
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v2  # This uses the stable version v2 of the checkout action
 
       - name: Deploy to S3
-        uses: jakejarvis/s3-sync-action@main
+        uses: jakejarvis/s3-sync-action@master  # This uses the 'master' branch of the action repo
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
